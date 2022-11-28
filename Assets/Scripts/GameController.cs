@@ -10,12 +10,17 @@ public class GameController : MonoBehaviour {
 	int timer = 60;
 	//end timer
 
+	// High Score
+	int current_score = 0 ;
+	//end High Score
+
 	void Start(){
 		StartCoroutine (Timer ());
 	}
 
 	void Update () {
-
+		
+		updateHighScore (current_score);
 	
 	}
 
@@ -31,4 +36,8 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	void updateHighScore(int current_score){
+		if(current_score > PlayerPrefs.GetInt("HighScore",0))
+			PlayerPrefs.SetInt("HighScore",current_score);
+	}
 }

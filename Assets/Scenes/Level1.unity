@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b30c36f9a8ea954f93dc68f527c66f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  high_score: {fileID: 208691983}
 --- !u!1 &118100443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3512,6 +3513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b30c36f9a8ea954f93dc68f527c66f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  high_score: {fileID: 0}
 --- !u!224 &1084522173 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224115969660702558, guid: 2f1c6f98c249f2a47801319198d099c5,
@@ -4494,6 +4496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b30c36f9a8ea954f93dc68f527c66f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  high_score: {fileID: 0}
 --- !u!224 &1450523882 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224115969660702558, guid: 2f1c6f98c249f2a47801319198d099c5,
@@ -4704,12 +4707,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 2042309833}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -172.2, y: -305.7}
+  m_AnchoredPosition: {x: -171.9, y: -273}
   m_SizeDelta: {x: 105.9, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514781286
@@ -4734,7 +4737,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 22
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -5302,6 +5305,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1514924537}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 114162935}
+        m_MethodName: getHighScore
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6445,8 +6459,9 @@ RectTransform:
   - {fileID: 1302794576}
   - {fileID: 1049192828}
   - {fileID: 1385078436}
+  - {fileID: 1514781285}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
