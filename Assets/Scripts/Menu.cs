@@ -28,4 +28,43 @@ public class Menu : MonoBehaviour {
 		high_score.text = PlayerPrefs.GetInt ("HighScore", 0).ToString();
 		Debug.Log ("High Score is "+PlayerPrefs.GetInt ("HighScore", 0).ToString());
 	}
+    //-----------------------------------------
+    //code of volume slider 
+    [SerializeField] Slider VolumeSlider;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
+        }
+        else
+        {
+            Load();
+
+        }
+
+
+    }
+
+    // Update is called once per frame
+    public void ChangeVolume()
+    {
+        AudioListener.volume = VolumeSlider.value;
+        Save();
+
+    }
+    void Load()
+    {
+        VolumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+
+
+    }
+    void Save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", VolumeSlider.value);
+    }
+    //----------------------------------------------
 }
