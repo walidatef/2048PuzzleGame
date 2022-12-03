@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b2e4485d55087eb4880b22800642894d
+guid: e786d11219328d64f96f6c93a6862ada
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,14 +8,14 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Ruslan Display
   fontNames:
-  - Ruslan Display
+  - Righteous
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
