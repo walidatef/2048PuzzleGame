@@ -14,8 +14,15 @@ public class GameController : MonoBehaviour {
 	int current_score = 0 ;
 	//end High Score
 
+	// mute sound
+	public AudioSource audio;
+	public Button muteButton;
+	public Sprite muteImg, notMuteImg;
+	//end mute
+
 	void Start(){
 		StartCoroutine (Timer ());
+		loadSettingSound();
 	}
 
 	void Update () {
@@ -39,5 +46,17 @@ public class GameController : MonoBehaviour {
 	void updateHighScore(int current_score){
 		if(current_score > PlayerPrefs.GetInt("HighScore",0))
 			PlayerPrefs.SetInt("HighScore",current_score);
+	}
+
+	void loadSettingSound() {
+		if (PlayerPrefs.GetInt("isMute", 0) == 1)
+		{
+			audio.Pause();
+			muteButton.image.sprite = muteImg;
+		}
+		else {
+			audio.Play();
+			muteButton.image.sprite = notMuteImg;
+		}
 	}
 }

@@ -5,9 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
-
+    //High Score
 	public Text high_score;
-	void Update(){
+
+    // mute sound
+    public AudioSource audio;
+    public Button muteButton;
+    bool isMute = false;
+    public Sprite muteImg,notMuteImg;
+    void Update(){
 
 	}
 
@@ -65,6 +71,23 @@ public class Menu : MonoBehaviour {
     void Save()
     {
         PlayerPrefs.SetFloat("musicVolume", VolumeSlider.value);
+    }
+
+  public  void mute() {
+        if (PlayerPrefs.GetInt("isMute",0)!=1)
+        {
+            isMute = true;
+            PlayerPrefs.SetInt("isMute", 1);
+            audio.Pause();
+            muteButton.image.sprite = muteImg;
+        }
+        else {
+            isMute = false;
+            PlayerPrefs.SetInt("isMute", 0);
+            audio.Play();
+            muteButton.image.sprite = notMuteImg;
+        }
+     
     }
     //----------------------------------------------
 }
