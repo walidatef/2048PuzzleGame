@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
 	void Start(){
 		StartCoroutine (Timer ());
 		loadSettingSound();
+		audio.volume = PlayerPrefs.GetFloat("Slider");
 	}
 
 	void Update () {

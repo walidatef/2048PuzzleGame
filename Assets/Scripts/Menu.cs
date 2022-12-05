@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 
 	}
 
-	public void PlayGame(){
+	public void resume(){
 		Time.timeScale = 1;
 	}
 		
@@ -25,7 +25,7 @@ public class Menu : MonoBehaviour {
 		Time.timeScale = 0;
 	}
 
-	public	void resume(){
+	public	void play(){
 		Time.timeScale = 1;
 		SceneManager.LoadScene ("Level1");
 	}
@@ -41,9 +41,9 @@ public class Menu : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("musicVolume"))
+        if (!PlayerPrefs.HasKey("Slider"))
         {
-            PlayerPrefs.SetFloat("musicVolume", 1);
+            PlayerPrefs.SetFloat("Slider", 1);
             Load();
         }
         else
@@ -58,19 +58,19 @@ public class Menu : MonoBehaviour {
     // Update is called once per frame
     public void ChangeVolume()
     {
-        AudioListener.volume = VolumeSlider.value;
+        audio.volume = VolumeSlider.value;
         Save();
 
     }
     void Load()
     {
-        VolumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        VolumeSlider.value = PlayerPrefs.GetFloat("Slider");
 
 
     }
     void Save()
     {
-        PlayerPrefs.SetFloat("musicVolume", VolumeSlider.value);
+        PlayerPrefs.SetFloat("Slider", VolumeSlider.value);
     }
 
   public  void mute() {
