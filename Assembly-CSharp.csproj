@@ -62,8 +62,8 @@
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Tip3.cs" />
     <Compile Include="Assets\Scripts\FillCell.cs" />
-    <Compile Include="Assets\Scripts\AllCells.cs" />
     <Compile Include="Assets\Scripts\Tip2.cs" />
+    <Compile Include="Assets\Scripts\DragAndDrop.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

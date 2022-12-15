@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour {
 	public Sprite muteImg, notMuteImg;
 	//end mute
 
+	
+
 	void Start(){
 		StartCoroutine (Timer ());
 		loadSettingSound();
@@ -29,8 +31,10 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		
 		updateHighScore (current_score);
+
 	
 	}
+
 
 	IEnumerator Timer(){
 

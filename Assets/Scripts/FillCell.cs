@@ -5,12 +5,27 @@ using UnityEngine.UI;
 
 public class FillCell : MonoBehaviour
 {
-    int value;
-   public Text text_value;
-
-    public void fillCell(int _value)
+   
+    //fill prefab
+    [SerializeField] GameObject fillPrefab;
+    [SerializeField] Transform[] allCells;
+   
+  
+     void Start()
     {
-        value = -_value;
-        text_value.text = value.ToString();
+        SpwanFill();
     }
+    public void SpwanFill()
+    {
+        Text num;
+        for (int whichSpawn=0; whichSpawn<10; whichSpawn++)
+        {
+            GameObject tempFill = Instantiate(fillPrefab, allCells[whichSpawn]);
+            num=  tempFill.GetComponentInChildren<Text>();
+            num.text = "4";
+        }
+        
+    }
+   
+
 }
