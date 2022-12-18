@@ -17,12 +17,18 @@ public class Drop : MonoBehaviour,IDropHandler
             /* Drag drag = eventData.pointerDrag.GetComponent<Drag>();
 
               drag.parentAfterDrag = transform;*/
-            Debug.Log(eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition);
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            Debug.Log(GetComponent<RectTransform>().anchoredPosition);
-            Debug.Log(eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition);
 
-          
+
+            Vector2 v =new Vector2(183.5f,-226.5f);
+            Debug.Log(eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition);
+            eventData.pointerDrag.GetComponentInParent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition - v ;
+         // eventData.pointerDrag.GetComponent<RectTransform>();
+
+
+
+
+
+
         }
     }
 }

@@ -20,22 +20,25 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         canvasGroup.alpha = .6f;
        canvasGroup.blocksRaycasts = false;
-       parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+      
         
+        parentAfterDrag = rectTransform.parent;
+        transform.SetParent(rectTransform.root);
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         
         rectTransform.anchoredPosition += eventData.delta/canvas.scaleFactor ;
+       
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-    transform.SetParent(parentAfterDrag);
+        rectTransform.SetParent(parentAfterDrag);
        
     }
 
