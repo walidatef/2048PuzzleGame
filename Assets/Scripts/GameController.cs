@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 	//end High Score
 
 	// mute sound
-	public AudioSource audio;
+	public new AudioSource audio;
 	public Button muteButton;
 	public Sprite muteImg, notMuteImg;
 	//end mute

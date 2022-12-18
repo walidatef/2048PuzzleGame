@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - cells
+  - fillCell
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 1058081607
+    locked: 0
+  - name: UI
+    uniqueID: 3870463697
+    locked: 0
+  - name: cells
+    uniqueID: 2995087929
+    locked: 0
+  - name: fillCell
+    uniqueID: 2669054641
     locked: 0

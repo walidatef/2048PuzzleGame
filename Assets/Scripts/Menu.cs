@@ -9,9 +9,9 @@ public class Menu : MonoBehaviour {
 	public Text high_score;
 
     // mute sound
-    public AudioSource audio;
+    public new AudioSource audio;
     public Button muteButton;
-    bool isMute = false;
+    
     public Sprite muteImg,notMuteImg;
     void Update(){
 
@@ -76,13 +76,13 @@ public class Menu : MonoBehaviour {
   public  void mute() {
         if (PlayerPrefs.GetInt("isMute",0)!=1)
         {
-            isMute = true;
+           
             PlayerPrefs.SetInt("isMute", 1);
             audio.Pause();
             muteButton.image.sprite = muteImg;
         }
         else {
-            isMute = false;
+           
             PlayerPrefs.SetInt("isMute", 0);
             audio.Play();
             muteButton.image.sprite = notMuteImg;
