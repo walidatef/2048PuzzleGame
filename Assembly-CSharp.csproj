@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Drag.cs" />
     <Compile Include="Assets\Scripts\FillCell.cs" />
     <Compile Include="Assets\Scripts\Tip2.cs" />
+    <Compile Include="Assets\Scripts\ShiftToUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
