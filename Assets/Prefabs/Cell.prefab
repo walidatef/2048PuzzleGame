@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2311610848609710239}
   m_Layer: 6
   m_Name: Cell
-  m_TagString: Untagged
+  m_TagString: LossCells
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -91,7 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allCells:
-  - {fileID: 224115969660702558}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -121,8 +120,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  numInParent: 0
-  numInChild: 0
+  - {fileID: 0}
 --- !u!114 &2311610848609710239
 MonoBehaviour:
   m_ObjectHideFlags: 0

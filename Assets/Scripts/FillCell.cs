@@ -14,6 +14,7 @@ public class FillCell : MonoBehaviour
      void Start()
     {
         SpwanFill(10);
+    
     }
     public void SpwanFill(int count)
     {
@@ -28,16 +29,16 @@ public class FillCell : MonoBehaviour
             if (which < .3f)
             {
                 num.text = "2";
-                tempFill.GetComponent<Button>().image.color = new Color(1,.1f,.2f);
+                tempFill.GetComponent<Button>().image.color = new Color(2 * .02f, .1f, 2 * .02f);
             }
             else if (which < .6f)
             {
                 num.text = "4";
-                tempFill.GetComponent<Button>().image.color  = new Color(1, .1f, .4f);
+                tempFill.GetComponent<Button>().image.color  = new Color(4*.02f, .1f, 4 * .02f);
             }
             else if(which < 1f){
                 num.text = "8";
-                tempFill.GetComponent<Button>().image.color = new Color(1, .1f, .6f);
+                tempFill.GetComponent<Button>().image.color = new Color(8 * .02f, .1f, 8 * .02f);
             }
 
 

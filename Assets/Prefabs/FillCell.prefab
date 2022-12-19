@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.035733357, g: 0.6886792, b: 0.43665728, a: 1}
+  m_Color: {r: 0.59460664, g: 0.9622642, b: 0.8220237, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -220,12 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   parentAfterDrag: {fileID: 0}
-  allCells:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  itemDraging: {fileID: 0}
   fillPrefab: {fileID: 6974559060078489359}
 --- !u!225 &7856694080413571718
 CanvasGroup:
@@ -259,7 +254,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &-8221416554776818064
 BoxCollider2D:
   m_ObjectHideFlags: 0

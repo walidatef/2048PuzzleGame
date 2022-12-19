@@ -19,7 +19,8 @@ public class GameController : MonoBehaviour {
 	public Button muteButton;
 	public Sprite muteImg, notMuteImg;
 	//end mute
-
+	//Game Over text 
+   public	Text gameOver;
 	
 
 	void Start(){
@@ -64,4 +65,8 @@ public class GameController : MonoBehaviour {
 			muteButton.image.sprite = notMuteImg;
 		}
 	}
+public	void showGameOver()
+    {
+		gameOver.text = "Game Over !";
+    }
 }
