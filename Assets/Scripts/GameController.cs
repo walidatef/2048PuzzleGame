@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using System;
 public class GameController : MonoBehaviour {
 
+	//effect merge
+	public AudioSource mergeEffect; 
+	public AudioSource shiftUpEffect;
 	//timer
 	public Text time_Text;
 	int timer = 160;
 	//end timer
 
 	// High Score
-   [HideInInspector] public	int current_score = 0 ;
+    [HideInInspector] public	int current_score = 0 ;
 	//end High Score
 
 	//current_score
@@ -23,7 +26,7 @@ public class GameController : MonoBehaviour {
 	public Sprite muteImg, notMuteImg;
 	//end mute
 	//Game Over text 
-   public	Text gameOver;
+    public Text gameOver;
 	
 
 	void Start(){

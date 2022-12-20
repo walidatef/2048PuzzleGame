@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerDownHandler
 {
+   
     private RectTransform rectTransform;
     [HideInInspector] public  Canvas canvas;
     private CanvasGroup canvasGroup;
@@ -20,7 +21,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private bool doShiftDown = false;
     private string itemPointerDown;
     GameController gameControllerClass;
-   
+    private static int fillCellNum = 10;
     void Update()
     {
         if (doShiftDown)
@@ -32,6 +33,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     
     private void Awake()
     {
+       
         gameControllerClass = GameObject.Find("GameController").GetComponent<GameController>();
         allCell = GetComponentInParent<Drop>().allCells;
         rectTransform = GetComponent<RectTransform>();
@@ -55,13 +57,13 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
            if (itemClicked.up != null && itemClicked.up.childCount != 0 )
             {
                 canDrag = itemClicked.up.GetChild(0).GetComponentInChildren<Text>().text == itemClicked.GetComponent<Transform>().GetChild(0).GetComponentInChildren<Text>().text;
-                Debug.Log("can drag up" + canDrag);
+                Debug.Log("can drag up -> " + canDrag);
                
                 if (itemClicked.left != null && !canDrag ){
                     if (itemClicked.left.childCount != 0)
                     {
                         canDrag = itemClicked.left.GetChild(0).GetComponentInChildren<Text>().text == itemClicked.GetComponent<Transform>().GetChild(0).GetComponentInChildren<Text>().text;
-                        Debug.Log("can drag left" + canDrag);
+                        Debug.Log("can drag left -> " + canDrag);
                     }
                     else
                     {
@@ -71,9 +73,8 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 if(itemClicked.right != null && !canDrag ){
                     if (itemClicked.right.childCount != 0)
                     {
-
                         canDrag = itemClicked.right.GetChild(0).GetComponentInChildren<Text>().text == itemClicked.GetComponent<Transform>().GetChild(0).GetComponentInChildren<Text>().text;
-                        Debug.Log("can drag right" + canDrag);
+                        Debug.Log("can drag right -> " + canDrag);
                     }
                     else
                     {
@@ -107,8 +108,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (canDrag)
         {
             canvasGroup.alpha = 1f;
-            canvasGroup.blocksRaycasts = true;
-            //rectTransform.SetParent(parentAfterDrag);
+            canvasGroup.blocksRaycasts = true;    
             itemDraging = gameObject.GetComponent<Rigidbody2D>();
             itemDraging.isKinematic = false;
             itemDraging.gravityScale = 20;
@@ -136,22 +136,31 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 if (numInDraging == numInParent)
                 {
                     Destroy(itemDraging.gameObject);
-
+                    gameControllerClass.mergeEffect.Play();
+                    // NUM IN FILLCELL
                     int sum = (numInDraging + numInParent);
                     if (sum > PlayerPrefs.GetInt("highNumInGame"))
                     {
                         PlayerPrefs.SetInt("highNumInGame", sum) ;
                     }
-                    int currentScore = int.Parse(gameControllerClass.current_score_text.text);
-                    
+
+                    int currentScore = int.Parse(gameControllerClass.current_score_text.text);                    
                     gameControllerClass.current_score_text.text = (currentScore + numInDraging).ToString();                
                     gameControllerClass.current_score = int.Parse(gameControllerClass.current_score_text.text);
-
-
                     collision.gameObject.GetComponentInChildren<Text>().text = sum.ToString();
-                    collision.gameObject.GetComponentInParent<Button>().image.color = new Color(sum * .02f, .1f, sum * .02f);
-                    Debug.Log("Marged");
-                   
+                    //color after merge
+                    collision.gameObject.GetComponentInParent<Button>().image.color = new Color(sum * .03f, 0.2f, sum * .04f);
+                    Debug.Log("Merged");
+                    fillCellNum--;
+                    Debug.Log("items num = "+fillCellNum);
+                    // shift and create new fillcells when fillCellNum == 6
+                    if (fillCellNum <= 6)
+                    {
+                      // shiftUp();
+                        fillCellNum += 5;
+                        // GameObject.Find("FillCell").GetComponent<ShiftToUp>().SendMessage("SpwanFill", 5);
+                       // SendMessage("SpwanFill");
+                    }
 
                 }
                 else
@@ -190,9 +199,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
   
     void shiftUp()
     {
+        gameControllerClass.shiftUpEffect.Play();
         for (int i = 0; i < 30; i++)
         {
             ShiftToUp parentCell = allCell[i].GetComponent<ShiftToUp>();
+         
         if (parentCell.up != null && allCell[i].childCount != 0)
         {
             if (parentCell.up.tag != "LossCells")
@@ -209,7 +220,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             }
         }
         }
-        GetComponentInParent<FillCell>().SpwanFill(5);
+        if (GetComponentInParent<FillCell>() != null)
+        {
+            GetComponentInParent<FillCell>().SpwanFill(5);
+        }
+       
+       
         Debug.Log("shift Up");
     }
     void shiftDwon()
@@ -224,6 +240,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 }
             }
     }
-
    
+
 }

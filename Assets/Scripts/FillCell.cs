@@ -32,22 +32,22 @@ public class FillCell : MonoBehaviour
             if (which < .3f)
             {
                 num.text = "2";
-                tempFill.GetComponent<Button>().image.color = new Color(2 * .02f, .1f, 2 * .02f);
+                tempFill.GetComponent<Button>().image.color = new Color(2 * .03f, .2f, 2 * .04f);
             }
             else if (which < .6f)
             {
                 num.text = "4";
-                tempFill.GetComponent<Button>().image.color  = new Color(4*.02f, .1f, 4 * .02f);
+                tempFill.GetComponent<Button>().image.color  = new Color(4*.03f, .2f, 4 * .04f);
             }
             else if(which < .8f){
                 num.text = "8";
-                tempFill.GetComponent<Button>().image.color = new Color(8 * .02f, .1f, 8 * .02f);
+                tempFill.GetComponent<Button>().image.color = new Color(8 * .03f, .2f, 8 * .04f);
             }
             else if (which < 1f) {
                 int h = PlayerPrefs.GetInt("highNumInGame");
                 num.text = h.ToString();
 
-                tempFill.GetComponent<Button>().image.color = new Color(h* .02f, .1f, h * .02f);
+                tempFill.GetComponent<Button>().image.color = new Color(h* .03f, .2f, h * .04f);
             }
 
 

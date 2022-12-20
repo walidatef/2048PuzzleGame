@@ -68,10 +68,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e786d11219328d64f96f6c93a6862ada, type: 3}
-    m_FontSize: 33
+    m_FontSize: 28
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 71
     m_Alignment: 4
     m_AlignByGeometry: 1
@@ -219,9 +219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  parentAfterDrag: {fileID: 0}
+  parentBeforeDrag: {fileID: 0}
   itemDraging: {fileID: 0}
   fillPrefab: {fileID: 6974559060078489359}
+  canDrag: 1
 --- !u!225 &7856694080413571718
 CanvasGroup:
   m_ObjectHideFlags: 0
