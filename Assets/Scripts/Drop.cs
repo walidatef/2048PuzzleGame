@@ -15,11 +15,9 @@ public class Drop : MonoBehaviour,IDropHandler
 
         if (eventData.pointerDrag != null)
         {
-           
-           
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition - new Vector2(183.5f, -226.5f);
-            // eventData.pointerDrag.GetComponent<BoxCollider2D>(). = true;
-           // eventData.pointerDrag.GetComponent<RectTransform>().SetParent(parentBeforeDrag);
+           if (eventData.pointerDrag.GetComponent<Drag>().canDrag)
+                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition - new Vector2(183.5f, -226.5f);
+       
 
 
 

@@ -10,21 +10,24 @@ public class FillCell : MonoBehaviour
     [SerializeField] GameObject fillPrefab;
     [SerializeField] Transform[] allCells;
    
-  
+
+
      void Start()
     {
+        PlayerPrefs.SetInt("highNumInGame", 2);
         SpwanFill(10);
-    
+
+       
     }
     public void SpwanFill(int count)
     {
         Text num;
-    
 
-        for (int whichSpawn=0; whichSpawn<count; whichSpawn++)
+       Debug.Log( PlayerPrefs.GetInt("highNumInGame"));
+        for (int whichCell = 0; whichCell<count; whichCell++)
         {
             float which = Random.Range(0f, 1f);
-            GameObject tempFill = Instantiate(fillPrefab, allCells[allCells.Length - whichSpawn-1]);
+            GameObject tempFill = Instantiate(fillPrefab, allCells[allCells.Length - whichCell-1]);
             num = tempFill.GetComponentInChildren<Text>();
             if (which < .3f)
             {
@@ -36,9 +39,15 @@ public class FillCell : MonoBehaviour
                 num.text = "4";
                 tempFill.GetComponent<Button>().image.color  = new Color(4*.02f, .1f, 4 * .02f);
             }
-            else if(which < 1f){
+            else if(which < .8f){
                 num.text = "8";
                 tempFill.GetComponent<Button>().image.color = new Color(8 * .02f, .1f, 8 * .02f);
+            }
+            else if (which < 1f) {
+                int h = PlayerPrefs.GetInt("highNumInGame");
+                num.text = h.ToString();
+
+                tempFill.GetComponent<Button>().image.color = new Color(h* .02f, .1f, h * .02f);
             }
 
 

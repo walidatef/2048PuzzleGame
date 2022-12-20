@@ -7,12 +7,15 @@ public class GameController : MonoBehaviour {
 
 	//timer
 	public Text time_Text;
-	int timer = 60;
+	int timer = 160;
 	//end timer
 
 	// High Score
-	int current_score = 0 ;
+   [HideInInspector] public	int current_score = 0 ;
 	//end High Score
+
+	//current_score
+	public Text current_score_text;
 
 	// mute sound
 	public new AudioSource audio;
@@ -24,6 +27,7 @@ public class GameController : MonoBehaviour {
 	
 
 	void Start(){
+		
 		StartCoroutine (Timer ());
 		loadSettingSound();
 		audio.volume = PlayerPrefs.GetFloat("Slider");
