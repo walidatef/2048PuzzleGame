@@ -64,7 +64,8 @@ public class Menu : MonoBehaviour {
     }
     void Load()
     {
-        VolumeSlider.value = PlayerPrefs.GetFloat("Slider");
+        if (VolumeSlider != null)
+        { VolumeSlider.value = PlayerPrefs.GetFloat("Slider"); }
 
 
     }
