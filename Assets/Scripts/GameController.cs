@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 public class GameController : MonoBehaviour {
 
+	public GameObject gameOverWindow;
+	public Text textGameOver;
 	//effect merge
 	public AudioSource mergeEffect; 
 	public AudioSource shiftUpEffect;
-	//timer
-	public Text time_Text;
-	int timer = 160;
-	//end timer
+	
+	public Text GGText;
+	
+	
 
 	// High Score
     [HideInInspector] public	int current_score = 0 ;
@@ -26,12 +29,12 @@ public class GameController : MonoBehaviour {
 	public Sprite muteImg, notMuteImg;
 	//end mute
 	//Game Over text 
-    public Text gameOver;
+   
 	
 
 	void Start(){
 		
-		StartCoroutine (Timer ());
+		
 		loadSettingSound();
 		audio.volume = PlayerPrefs.GetFloat("Slider");
 	}
@@ -44,21 +47,15 @@ public class GameController : MonoBehaviour {
 	}
 
 
-	IEnumerator Timer(){
-
-		while(timer!=0){
-			if (timer< 10)
-				time_Text.text = "0"+timer;
-			else
-				time_Text.text =timer.ToString();
-			yield return new WaitForSeconds (1);
-			timer--;
-		}
-	}
+	
 
 	void updateHighScore(int current_score){
-		if(current_score > PlayerPrefs.GetInt("HighScore",0))
-			PlayerPrefs.SetInt("HighScore",current_score);
+		if (current_score > PlayerPrefs.GetInt("HighScore", 0))
+		{
+			PlayerPrefs.SetInt("HighScore", current_score);
+			GGText.text = "Congratulations, you have crossed the high score :)";
+			GGText.color = Color.yellow;
+		}
 	}
 
 	void loadSettingSound() {
@@ -72,8 +69,8 @@ public class GameController : MonoBehaviour {
 			muteButton.image.sprite = notMuteImg;
 		}
 	}
-public	void showGameOver()
+	public void gameOver()
     {
-		gameOver.text = "Game Over !";
+		SceneManager.LoadScene("Level1");
     }
 }

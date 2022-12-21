@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerDownHandler
 {
-   
+    
     private RectTransform rectTransform;
     [HideInInspector] public  Canvas canvas;
     private CanvasGroup canvasGroup;
@@ -22,6 +22,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private string itemPointerDown;
     GameController gameControllerClass;
     private static int fillCellNum = 10;
+    private bool gameOver = false;
     void Update()
     {
         if (doShiftDown)
@@ -29,6 +30,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             shiftDwon();
         }
         
+        if(allCell[0].childCount!=0 && allCell[1].childCount != 0 && allCell[2].childCount != 0 && allCell[3].childCount != 0 && allCell[4].childCount != 0)
+        {
+            gameOver = true;
+            gameControllerClass.gameOverWindow.SetActive(true);
+            gameControllerClass.textGameOver.text = "Your Score is " + gameControllerClass.current_score;
+        }
     }
     
     private void Awake()
@@ -81,7 +88,24 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                         canDrag = true;
                     }
                 }
+                if (itemClicked.down != null && !canDrag && itemClicked.down.tag != "CellDown")
+                {
+                    if (itemClicked.down.childCount != 0 )
+                    {
+                        canDrag = itemClicked.down.GetChild(0).GetComponentInChildren<Text>().text == itemClicked.GetComponent<Transform>().GetChild(0).GetComponentInChildren<Text>().text;
+                        Debug.Log("can drag down -> " + canDrag);
+                    }
+                    else
+                    {
+                        canDrag = true;
+                    }
 
+                }
+
+            }else if (itemClicked.up.childCount == 0)
+            {
+                canDrag = true;
+                Debug.Log("can drag up -> " + canDrag);
             }
         }
 
@@ -150,16 +174,15 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     collision.gameObject.GetComponentInChildren<Text>().text = sum.ToString();
                     //color after merge
                     collision.gameObject.GetComponentInParent<Button>().image.color = new Color(sum * .03f, 0.2f, sum * .04f);
-                    Debug.Log("Merged");
                     fillCellNum--;
                     Debug.Log("items num = "+fillCellNum);
                     // shift and create new fillcells when fillCellNum == 6
                     if (fillCellNum <= 6)
                     {
-                      // shiftUp();
+                         // shiftUp();
                         fillCellNum += 5;
                         // GameObject.Find("FillCell").GetComponent<ShiftToUp>().SendMessage("SpwanFill", 5);
-                       // SendMessage("SpwanFill");
+                        // SendMessage("SpwanFill");
                     }
 
                 }
@@ -204,19 +227,17 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             ShiftToUp parentCell = allCell[i].GetComponent<ShiftToUp>();
          
-        if (parentCell.up != null && allCell[i].childCount != 0)
+        if (parentCell.up != null && allCell[i].childCount != 0 && parentCell.up.childCount ==0)
         {
-            if (parentCell.up.tag != "LossCells")
+            if (!gameOver )
             {
                         allCell[i].GetChild(0).GetComponent<Transform>().position = parentCell.up.transform.position;
                         allCell[i].GetChild(0).GetComponent<RectTransform>().SetParent(parentCell.up);                        
             }
             else
             {
-                        allCell[i].GetChild(0).GetComponent<Transform>().position = parentCell.up.transform.position;
-                        allCell[i].GetChild(0).GetComponent<RectTransform>().SetParent(parentCell.up);
                         Debug.Log("Game Over");
-                        // Time.timeScale = 0;
+                       // Game Over    
             }
         }
         }

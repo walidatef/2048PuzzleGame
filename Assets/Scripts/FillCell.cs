@@ -27,6 +27,10 @@ public class FillCell : MonoBehaviour
         for (int whichCell = 0; whichCell<count; whichCell++)
         {
             float which = Random.Range(0f, 1f);
+            if(allCells[allCells.Length - whichCell - 1].childCount == 0)
+            {
+
+            
             GameObject tempFill = Instantiate(fillPrefab, allCells[allCells.Length - whichCell-1]);
             num = tempFill.GetComponentInChildren<Text>();
             if (which < .3f)
@@ -50,7 +54,7 @@ public class FillCell : MonoBehaviour
                 tempFill.GetComponent<Button>().image.color = new Color(h* .03f, .2f, h * .04f);
             }
 
-
+            }
 
         }
         

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - LossCells
+  - CellDown
   layers:
   - Default
   - TransparentFX
