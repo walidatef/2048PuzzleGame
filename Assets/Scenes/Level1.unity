@@ -12547,6 +12547,7 @@ MonoBehaviour:
   GGWindow: {fileID: 264446321}
   level: {fileID: 1250750055}
   levelInGG: {fileID: 671920521}
+  TextInStWindow: {fileID: 1344324009}
   StartWindow: {fileID: 789553501}
   mergeEffect: {fileID: 1310691812}
   shiftUpEffect: {fileID: 1310691811}
@@ -12853,7 +12854,7 @@ GameObject:
   - component: {fileID: 1344324010}
   - component: {fileID: 1344324009}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: TextInStWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12912,7 +12913,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Your goal is to reach 10k score to
+  m_Text: 
 --- !u!222 &1344324010
 CanvasRenderer:
   m_ObjectHideFlags: 0

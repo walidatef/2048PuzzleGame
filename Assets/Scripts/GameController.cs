@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	public GameObject GGWindow;
 	public Text level;
 	public Text levelInGG;
+	public Text TextInStWindow;
 	public GameObject StartWindow;
 	//effect merge
 	public AudioSource mergeEffect; 
@@ -37,10 +38,22 @@ public class GameController : MonoBehaviour {
 	
 
 	void Start(){
-		//PlayerPrefs.SetInt("Level", 1); to test
+		/*to test
+		//PlayerPrefs.SetInt("Level", 1);
+		//PlayerPrefs.SetInt("HighScore", 4088);
+		*/
 		level.text=	PlayerPrefs.GetInt("Level", 1).ToString();
 		if (!StartWindow.gameObject.activeSelf)
         {
+			if(PlayerPrefs.GetFloat("Level", 1) == 1)
+            {
+				TextInStWindow.text = "Your goal is to reach 5k score to";
+
+			}
+			else if(PlayerPrefs.GetFloat("Level", 1) == 2)
+            {
+				TextInStWindow.text = "Your goal is to reach 10k score to";
+			}
 			StartWindow.gameObject.SetActive(true);
 			
 		}
@@ -90,7 +103,7 @@ public class GameController : MonoBehaviour {
 		if (!GGWindow.gameObject.activeSelf)
 		{
 			level.text = (int.Parse(level.text) + 1).ToString();
-			levelInGG.text = "Up to level "+level.text;
+			levelInGG.text = "Up to level "+ level.text;
 			PlayerPrefs.SetInt("Level",int.Parse(level.text));
 			GGWindow.SetActive(true);
 			

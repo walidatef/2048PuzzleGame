@@ -174,8 +174,13 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     gameControllerClass.current_score_text.text = newScore.ToString();                
                     gameControllerClass.current_score = newScore;
                     collision.gameObject.GetComponentInChildren<Text>().text = mergeNum.ToString();
-                    if (newScore  == 10000)
+                    if (newScore == 5000 && PlayerPrefs.GetInt("Level", 1)!=2)
                     {
+                        //up to level 2
+                        gameControllerClass.showGG();
+                    }else if (newScore == 10000 && PlayerPrefs.GetInt("Level", 1) != 3)
+                    {
+                        //up to level 3
                         gameControllerClass.showGG();
                     }
                     //color after merge
@@ -186,8 +191,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     if (fillCellNum <= 5)
                     {
                          shiftUp();
-                        fillCellNum += 5;
-                        object x = 5;
+                        fillCellNum += 5;                        
                         collision.gameObject.GetComponent<Transform>().parent.parent.GetComponent<FillCell>().SpwanFill(5);
                        
                     }
@@ -251,6 +255,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (GetComponentInParent<FillCell>() != null)
         {
             GetComponentInParent<FillCell>().SpwanFill(5);
+            fillCellNum += 5;
         }
        
        
