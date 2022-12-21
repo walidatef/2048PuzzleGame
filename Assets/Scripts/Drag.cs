@@ -54,10 +54,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnPointerDown(PointerEventData eventData)
     {
+        
         /*CHECK IS DRAG OR NOT */
         if (eventData != null)
         {
-            itemPointerDown = eventData.pointerEnter.GetComponentInParent<RectTransform>().parent.parent.name;
+            itemPointerDown = eventData.pointerEnter.GetComponent<RectTransform>().parent.parent.name;
             GameObject thisItem = GameObject.Find(itemPointerDown);
             ShiftToUp itemClicked = thisItem.GetComponent<ShiftToUp>();
            
@@ -112,7 +113,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (canDrag)
+        if (canDrag )
         {
             canvasGroup.alpha = .6f;
             canvasGroup.blocksRaycasts = false;
@@ -123,13 +124,13 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(canDrag)
+        if(canDrag )
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (canDrag)
+        if (canDrag )
         {
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;    
@@ -162,27 +163,33 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     Destroy(itemDraging.gameObject);
                     gameControllerClass.mergeEffect.Play();
                     // NUM IN FILLCELL
-                    int sum = (numInDraging + numInParent);
-                    if (sum > PlayerPrefs.GetInt("highNumInGame"))
+                    int mergeNum = (numInDraging + numInParent);
+                    if (mergeNum > PlayerPrefs.GetInt("highNumInGame"))
                     {
-                        PlayerPrefs.SetInt("highNumInGame", sum) ;
+                        PlayerPrefs.SetInt("highNumInGame", mergeNum) ;
                     }
 
-                    int currentScore = int.Parse(gameControllerClass.current_score_text.text);                    
-                    gameControllerClass.current_score_text.text = (currentScore + numInDraging).ToString();                
-                    gameControllerClass.current_score = int.Parse(gameControllerClass.current_score_text.text);
-                    collision.gameObject.GetComponentInChildren<Text>().text = sum.ToString();
+                    int oldScore = int.Parse(gameControllerClass.current_score_text.text);
+                    int newScore = oldScore + numInDraging;
+                    gameControllerClass.current_score_text.text = newScore.ToString();                
+                    gameControllerClass.current_score = newScore;
+                    collision.gameObject.GetComponentInChildren<Text>().text = mergeNum.ToString();
+                    if (newScore  == 10000)
+                    {
+                        gameControllerClass.showGG();
+                    }
                     //color after merge
-                    collision.gameObject.GetComponentInParent<Button>().image.color = new Color(sum * .03f, 0.2f, sum * .04f);
+                    collision.gameObject.GetComponentInParent<Button>().image.color = new Color(mergeNum * .03f, 0.2f, mergeNum * .04f);
                     fillCellNum--;
                     Debug.Log("items num = "+fillCellNum);
                     // shift and create new fillcells when fillCellNum == 6
-                    if (fillCellNum <= 6)
+                    if (fillCellNum <= 5)
                     {
-                         // shiftUp();
+                         shiftUp();
                         fillCellNum += 5;
-                        // GameObject.Find("FillCell").GetComponent<ShiftToUp>().SendMessage("SpwanFill", 5);
-                        // SendMessage("SpwanFill");
+                        object x = 5;
+                        collision.gameObject.GetComponent<Transform>().parent.parent.GetComponent<FillCell>().SpwanFill(5);
+                       
                     }
 
                 }
@@ -261,6 +268,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 }
             }
     }
+   
    
 
 }

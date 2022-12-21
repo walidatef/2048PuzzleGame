@@ -8,6 +8,10 @@ public class GameController : MonoBehaviour {
 
 	public GameObject gameOverWindow;
 	public Text textGameOver;
+	public GameObject GGWindow;
+	public Text level;
+	public Text levelInGG;
+	public GameObject StartWindow;
 	//effect merge
 	public AudioSource mergeEffect; 
 	public AudioSource shiftUpEffect;
@@ -28,19 +32,26 @@ public class GameController : MonoBehaviour {
 	public Button muteButton;
 	public Sprite muteImg, notMuteImg;
 	//end mute
-	//Game Over text 
+	
    
 	
 
 	void Start(){
-		
-		
+		//PlayerPrefs.SetInt("Level", 1); to test
+		level.text=	PlayerPrefs.GetInt("Level", 1).ToString();
+		if (!StartWindow.gameObject.activeSelf)
+        {
+			StartWindow.gameObject.SetActive(true);
+			
+		}
+
+
 		loadSettingSound();
 		audio.volume = PlayerPrefs.GetFloat("Slider");
 	}
 
 	void Update () {
-		
+     
 		updateHighScore (current_score);
 
 	
@@ -56,6 +67,7 @@ public class GameController : MonoBehaviour {
 			GGText.text = "Congratulations, you have crossed the high score :)";
 			GGText.color = Color.yellow;
 		}
+		
 	}
 
 	void loadSettingSound() {
@@ -72,5 +84,17 @@ public class GameController : MonoBehaviour {
 	public void gameOver()
     {
 		SceneManager.LoadScene("Level1");
-    }
+	}
+	public void showGG()
+	{
+		if (!GGWindow.gameObject.activeSelf)
+		{
+			level.text = (int.Parse(level.text) + 1).ToString();
+			levelInGG.text = "Up to level "+level.text;
+			PlayerPrefs.SetInt("Level",int.Parse(level.text));
+			GGWindow.SetActive(true);
+			
+		}
+	}
+	
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LossCells
   - CellDown
+  - FillCell
   layers:
   - Default
   - TransparentFX
