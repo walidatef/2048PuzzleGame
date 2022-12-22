@@ -23,14 +23,29 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     GameController gameControllerClass;
     private static int fillCellNum = 10;
     private bool gameOver = false;
+    private int max = 16;
     void Update()
     {
+        for (int i = 0; i < 30; i++)
+        {
+            if (allCell[i].childCount != 0)
+            {
+                int num = int.Parse(allCell[i].GetComponentInChildren<Text>().text);
+                if (num > max)
+                    max = num;
+                int n = PlayerPrefs.GetInt("lowNumInGame");
+                if (Mathf.Log(max, 2) - Mathf.Log(n, 2) >= 10)
+                {
+                    PlayerPrefs.SetInt("lowNumInGame", n * 2);
+                }
+            }
+        }
         if (doShiftDown)
         {
             shiftDwon();
         }
         
-        if(allCell[0].childCount!=0 && allCell[1].childCount != 0 && allCell[2].childCount != 0 && allCell[3].childCount != 0 && allCell[4].childCount != 0)
+        if(allCell[0].childCount!=0 || allCell[1].childCount != 0 || allCell[2].childCount != 0 || allCell[3].childCount != 0 || allCell[4].childCount != 0)
         {
             gameOver = true;
             gameControllerClass.gameOverWindow.SetActive(true);
@@ -173,6 +188,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     int newScore = oldScore + numInDraging;
                     gameControllerClass.current_score_text.text = newScore.ToString();                
                     gameControllerClass.current_score = newScore;
+                    if (mergeNum > 1000)
+                    {
+                        collision.gameObject.GetComponentInChildren<Text>().fontSize = 18;
+                    }
                     collision.gameObject.GetComponentInChildren<Text>().text = mergeNum.ToString();
                     if (newScore == 5000 && PlayerPrefs.GetInt("Level", 1)!=2)
                     {
@@ -192,7 +211,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                     {
                          shiftUp();
                         fillCellNum += 5;                        
-                        collision.gameObject.GetComponent<Transform>().parent.parent.GetComponent<FillCell>().SpwanFill(5);
+                        collision.gameObject.GetComponent<Transform>().parent.parent.GetComponent<FillCell>().SpawnFillAtShiftUp(5);
                        
                     }
 
@@ -254,7 +273,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         if (GetComponentInParent<FillCell>() != null)
         {
-            GetComponentInParent<FillCell>().SpwanFill(5);
+            GetComponentInParent<FillCell>().SpawnFillAtShiftUp(5);
             fillCellNum += 5;
         }
        
